@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 // Enum for the different avatar gradient colors
-enum AvatarWithGradient { green, orange, blue }
+enum Gradients { green, orange, blue }
 
-class AvatarWidget extends StatelessWidget {
+class AvatarWithGradient extends StatelessWidget {
   static const double avatarDiameter = 50;
 
   // Static constants for the start and end colors of each gradient
@@ -16,12 +16,12 @@ class AvatarWidget extends StatelessWidget {
   static const Color blueStart = Color(0xff00acf6);
   static const Color blueEnd = Color(0xff006ded);
 
-  const AvatarWidget(
+  const AvatarWithGradient(
       {Key? key, required this.avatarGradient, required this.avatarText})
       : super(key: key);
 
   // Gradient type property
-  final AvatarWithGradient avatarGradient;
+  final Gradients avatarGradient;
   final String avatarText;
 
   @override
@@ -47,19 +47,19 @@ class AvatarWidget extends StatelessWidget {
   LinearGradient _getGradient() {
     switch (avatarGradient) {
       // Return green gradient
-      case AvatarWithGradient.green:
+      case Gradients.green:
         return const LinearGradient(
           colors: [greenStart, greenEnd],
           stops: [0.0, 1.0],
         );
       // Return orange gradient
-      case AvatarWithGradient.orange:
+      case Gradients.orange:
         return const LinearGradient(
           colors: [orangeStart, orangeEnd],
           stops: [0.0, 1.0],
         );
       // Return blue gradient
-      case AvatarWithGradient.blue:
+      case Gradients.blue:
         return const LinearGradient(
           colors: [blueStart, blueEnd],
           stops: [0.0, 1.0],
