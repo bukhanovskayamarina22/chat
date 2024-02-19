@@ -6,7 +6,7 @@ const ColorScheme colorScheme = ColorScheme.light(
   onPrimary: Color(0xff00521c),
   secondary: Color(0xffedf2f6),
   onSecondary: Color(0xff2b333e),
-  tertiary: Color(0xff9db7cd),
+  tertiary: Color(0xff9db7cb),
   surface: Color(0xffffffff),
   onSurface: Color(0xff000000),
   onSurfaceVariant: Color(0xff5e7a90),
@@ -45,3 +45,4 @@ TextTheme textTheme = TextTheme(
     height: 14.56 / 12,
   ),
 );
+

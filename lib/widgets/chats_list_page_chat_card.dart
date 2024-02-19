@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:test_assignment_chat/widgets/avatar_with_gradient.dart';
 import 'package:test_assignment_chat/widgets/chat_card.dart';
 
-class ChatsPageChatCard extends StatelessWidget {
-  const ChatsPageChatCard({super.key, required this.isLastMessageMine});
+class ChatsListPageChatCard extends StatelessWidget {
+  final String name; 
+  final Gradients gradient; 
+  final String lastMessage;
+  const ChatsListPageChatCard({super.key, required this.isLastMessageMine, required this.name, required this.gradient, required this.lastMessage});
   final bool isLastMessageMine;
 
   @override
@@ -12,17 +15,18 @@ class ChatsPageChatCard extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10, right: 12, bottom: 10),
       child: ChatCard(
         gradient: Gradients.green,
-        name: "Виктор Власов",
-        subtext: LastMessagePreview(isLastMessageMine: isLastMessageMine),
+        name: name,
+        subtext: LastMessagePreview(isLastMessageMine: isLastMessageMine, lastMessage: "The last message",),
       ),
     );
   }
 }
 
 class LastMessagePreview extends StatelessWidget {
+  final String lastMessage;
   const LastMessagePreview({
     super.key,
-    required this.isLastMessageMine,
+    required this.isLastMessageMine, required this.lastMessage,
   });
 
   final bool isLastMessageMine;
@@ -44,7 +48,7 @@ class LastMessagePreview extends StatelessWidget {
                   child: Text(
                     overflow: TextOverflow.fade,
                     softWrap: false,
-                    "This is the last message",
+                    lastMessage,
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
                         color: Theme.of(context).colorScheme.onSurfaceVariant),
                   ),
@@ -55,7 +59,7 @@ class LastMessagePreview extends StatelessWidget {
                   child: Text(
                     overflow: TextOverflow.fade,
                     softWrap: false,
-                    "text",
+                    lastMessage,
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
                         color: Theme.of(context).colorScheme.onSurfaceVariant),
                   ),
@@ -69,8 +73,9 @@ class LastMessagePreview extends StatelessWidget {
 
 
 class LastMessageDate extends StatelessWidget {
+  final String lastMessageDate;
   const LastMessageDate({
-    super.key,
+    super.key, required this.lastMessageDate,
   });
 
   @override
@@ -80,7 +85,7 @@ class LastMessageDate extends StatelessWidget {
       child: Container(
         alignment: Alignment.topRight,
         child: Text(
-          "Вчера",
+          lastMessageDate,
           style: Theme.of(context)
               .textTheme
               .labelLarge!
