@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_assignment_chat/widgets/common_widgets.dart';
 
 class ChatsListPageScaffold extends StatelessWidget {
   const ChatsListPageScaffold({
@@ -58,9 +59,11 @@ class ChatsListPageAppBar extends StatelessWidget {
               ),
       ),
             const Padding(padding: EdgeInsets.only(top: 24)), 
-            Divider(color: Theme.of(context).colorScheme.tertiary,)
+            const TetriaryDivider()
           ],
         ),
       );
   }
 }
+
+
