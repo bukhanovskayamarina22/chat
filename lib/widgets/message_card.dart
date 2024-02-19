@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:test_assignment_chat/widgets/message_tail.dart';
 
@@ -14,7 +12,9 @@ class MessageCard extends StatelessWidget {
   // Calculates border radius based on message position
   final MessageBorderCalculator borderCalculator = MessageBorderCalculator();
 
-  // Booleans to determine message position
+  final String message;
+  final String? imageURL;
+  final String sendingTime;
   final bool isMyMessage;
   final bool isPreviousFromSameSender;
   final bool isNextFromSameSender;
@@ -24,26 +24,28 @@ class MessageCard extends StatelessWidget {
     required this.isMyMessage,
     required this.isPreviousFromSameSender,
     required this.isNextFromSameSender,
+    required this.message,
+    this.imageURL,
+    required this.sendingTime,
   });
 
   @override
   Widget build(BuildContext context) {
- 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       // Position: message on left or right
       mainAxisAlignment:
           isMyMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
-        // If the sender of the message is not the current user and 
-        // the message is the last in a sequence of messages from this user 
-        // (next message is from the current user) - display a (inverted) tail. 
+        // If the sender of the message is not the current user and
+        // the message is the last in a sequence of messages from this user
+        // (next message is from the current user) - display a (inverted) tail.
         // If no - display an empty container with the same width as the tail (10px)
         !isMyMessage
             ? !isNextFromSameSender
                 ? MessageTail(
                     invert: true,
-                    color : Theme.of(context).colorScheme.secondary,
+                    color: Theme.of(context).colorScheme.secondary,
                   )
                 : Container(
                     width: paddingHorizontal,
@@ -60,34 +62,45 @@ class MessageCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: isMyMessage
                 ? Theme.of(context).colorScheme.primary
-                 : Theme.of(context).colorScheme.secondary,
+                : Theme.of(context).colorScheme.secondary,
             borderRadius: _getBorderRadius(),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
                 vertical: paddingVertical, horizontal: paddingHorizontal),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
+            child: Column(
               children: [
-                Flexible(
-                  child: Text(
-                    "Placeholder text",
-                    style : Theme.of(context).textTheme.bodyMedium,
-                  ),
+                LayoutBuilder(builder: (_, __) {
+                  if(imageURL != null) {
+                    return Image.network(imageURL!, width: 160, fit: BoxFit.contain,);
+                  } else {
+                    return const SizedBox.shrink();
+                  }
+                }),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        message,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
         ),
-        // If the sender of the message is the current user and 
-        // the message is the last in a sequence of messages from this user 
-        // (next message is not from the current user) - display a tail. 
+        // If the sender of the message is the current user and
+        // the message is the last in a sequence of messages from this user
+        // (next message is not from the current user) - display a tail.
         // If no - display an empty container with the same width as the tail (10px)
         isMyMessage
             ? !isNextFromSameSender
                 ? MessageTail(
                     invert: false,
-                    color : Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.primary,
                   )
                 : Container(
                     width: paddingVertical,
