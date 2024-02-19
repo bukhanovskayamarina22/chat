@@ -20,9 +20,9 @@ TextTheme textTheme = TextTheme(
     height: 24.76 / 20,
   ),
   headlineLarge: GoogleFonts. raleway(
-    fontWeight: FontWeight.w700,
-    fontSize: 20,
-    height: 24.76 / 20,
+    fontWeight: FontWeight.w600,
+    fontSize: 32,
+    height: 39.2 / 32,
   ),
   headlineSmall: GoogleFonts. raleway(
     fontWeight: FontWeight.w600,
