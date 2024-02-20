@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+UserOnline _$UserOnlineFromJson(Map<String, dynamic> json) {
+  return _UserOnline.fromJson(json);
+}
+
 /// @nodoc
 mixin _$UserOnline {
   String get userId => throw _privateConstructorUsedError;
@@ -24,6 +28,7 @@ mixin _$UserOnline {
   set lastTimeDisconnected(DateTime value) =>
       throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserOnlineCopyWith<UserOnline> get copyWith =>
       throw _privateConstructorUsedError;
@@ -122,12 +127,15 @@ class __$$UserOnlineImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$UserOnlineImpl with DiagnosticableTreeMixin implements _UserOnline {
   _$UserOnlineImpl(
       {required this.userId,
       required this.lastTimeConnected,
       required this.lastTimeDisconnected});
+
+  factory _$UserOnlineImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserOnlineImplFromJson(json);
 
   @override
   String userId;
@@ -156,6 +164,13 @@ class _$UserOnlineImpl with DiagnosticableTreeMixin implements _UserOnline {
   @pragma('vm:prefer-inline')
   _$$UserOnlineImplCopyWith<_$UserOnlineImpl> get copyWith =>
       __$$UserOnlineImplCopyWithImpl<_$UserOnlineImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UserOnlineImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _UserOnline implements UserOnline {
@@ -163,6 +178,9 @@ abstract class _UserOnline implements UserOnline {
       {required String userId,
       required DateTime lastTimeConnected,
       required DateTime lastTimeDisconnected}) = _$UserOnlineImpl;
+
+  factory _UserOnline.fromJson(Map<String, dynamic> json) =
+      _$UserOnlineImpl.fromJson;
 
   @override
   String get userId;

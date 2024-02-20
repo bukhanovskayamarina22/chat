@@ -14,3 +14,4 @@ abstract class IMessageRepository {
 
   Future<void> deleteMessage(Message message);
 }
+

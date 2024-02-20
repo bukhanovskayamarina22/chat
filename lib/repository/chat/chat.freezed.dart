@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+Chat _$ChatFromJson(Map<String, dynamic> json) {
+  return _Chat.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Chat {
   String get id => throw _privateConstructorUsedError;
   List<String> get usersId => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ChatCopyWith<Chat> get copyWith => throw _privateConstructorUsedError;
 }
@@ -97,10 +102,13 @@ class __$$ChatImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ChatImpl with DiagnosticableTreeMixin implements _Chat {
   const _$ChatImpl({required this.id, required final List<String> usersId})
       : _usersId = usersId;
+
+  factory _$ChatImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChatImplFromJson(json);
 
   @override
   final String id;
@@ -135,6 +143,7 @@ class _$ChatImpl with DiagnosticableTreeMixin implements _Chat {
             const DeepCollectionEquality().equals(other._usersId, _usersId));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, const DeepCollectionEquality().hash(_usersId));
@@ -144,12 +153,21 @@ class _$ChatImpl with DiagnosticableTreeMixin implements _Chat {
   @pragma('vm:prefer-inline')
   _$$ChatImplCopyWith<_$ChatImpl> get copyWith =>
       __$$ChatImplCopyWithImpl<_$ChatImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ChatImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Chat implements Chat {
   const factory _Chat(
       {required final String id,
       required final List<String> usersId}) = _$ChatImpl;
+
+  factory _Chat.fromJson(Map<String, dynamic> json) = _$ChatImpl.fromJson;
 
   @override
   String get id;

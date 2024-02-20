@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+Message _$MessageFromJson(Map<String, dynamic> json) {
+  return _Message.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Message {
   String get id => throw _privateConstructorUsedError;
@@ -25,6 +29,7 @@ mixin _$Message {
   String get chatId => throw _privateConstructorUsedError;
   DateTime get timeStamp => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MessageCopyWith<Message> get copyWith => throw _privateConstructorUsedError;
 }
@@ -180,17 +185,20 @@ class __$$MessageImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$MessageImpl with DiagnosticableTreeMixin implements _Message {
   const _$MessageImpl(
       {required this.id,
       required this.message,
       this.imageURL,
-      this.isSend = false,
+      this.isSend = true,
       this.isRead = false,
       required this.senderId,
       required this.chatId,
       required this.timeStamp});
+
+  factory _$MessageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MessageImplFromJson(json);
 
   @override
   final String id;
@@ -249,6 +257,7 @@ class _$MessageImpl with DiagnosticableTreeMixin implements _Message {
                 other.timeStamp == timeStamp));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, message, imageURL, isSend,
       isRead, senderId, chatId, timeStamp);
@@ -258,6 +267,13 @@ class _$MessageImpl with DiagnosticableTreeMixin implements _Message {
   @pragma('vm:prefer-inline')
   _$$MessageImplCopyWith<_$MessageImpl> get copyWith =>
       __$$MessageImplCopyWithImpl<_$MessageImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$MessageImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Message implements Message {
@@ -270,6 +286,8 @@ abstract class _Message implements Message {
       required final String senderId,
       required final String chatId,
       required final DateTime timeStamp}) = _$MessageImpl;
+
+  factory _Message.fromJson(Map<String, dynamic> json) = _$MessageImpl.fromJson;
 
   @override
   String get id;
