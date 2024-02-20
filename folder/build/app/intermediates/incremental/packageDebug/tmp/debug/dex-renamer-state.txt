@@ -1,0 +1,4 @@
+#Tue Feb 20 18:08:21 MSK 2024
+base.0=/home/shv/development/test_assignment_chat/folder/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
