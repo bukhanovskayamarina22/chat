@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:test_assignment_chat/widgets/avatar_with_gradient.dart';
-import 'package:test_assignment_chat/widgets/paddings.dart';
+import 'package:test_assignment_chat/widgets/common_widgets.dart';
 import 'package:test_assignment_chat/widgets/user_name.dart';
 
 class ChatCard extends StatelessWidget {
@@ -28,7 +28,6 @@ class ChatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width),
       height: 50,
       child: Row(
         children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:test_assignment_chat/widgets/avatar_with_gradient.dart';
 import 'package:test_assignment_chat/widgets/chat_page_title_card.dart';
 import 'package:test_assignment_chat/widgets/common_widgets.dart';
@@ -8,8 +9,17 @@ class ChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: ChatPageAppBar(name: "User Name", status: "status",),
+    return Scaffold(
+      body: Column(
+        children: [
+          const ChatPageAppBar(name: "User Name", status: "status",),
+          const SecondaryDivider(),
+          Flexible(child: Container()), 
+          const SecondaryDivider(),
+          const InputMessage(),
+        ],
+      ),
+      
     );
   }
 }
@@ -48,14 +58,13 @@ class ChatPageAppBar extends StatelessWidget {
             ],
           ),
         ),
-        const TetriaryDivider(),
       ],
     );
   }
 }
 
 class IconWithSize24 extends StatelessWidget {
-  final Object icon;
+  final IconData icon;
   final Color color;
   const IconWithSize24({
     super.key, required this.icon, required this.color,
@@ -64,7 +73,7 @@ class IconWithSize24 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Icon(
-      const ImageIcon(AssetImage("assets/attach.png")) as IconData,
+      icon,
       size: 24,
       color: color
     );
@@ -78,35 +87,39 @@ class InputMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, top: 14, right: 20, bottom: 44),
-      child: Row(
-        children: [
-          const ChatPageImageIcon(path: 'assets/Attach.png',),
-          const Padding(padding: EdgeInsets.only(left: 8)),
-          Flexible(
-              child: SecondaryContainer(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 12),
-              child: TextField(
-                textAlignVertical: TextAlignVertical.center,
-                maxLines: 99,
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Сообщение",
-                    hintStyle: Theme.of(context)
-                        .textTheme
-                        .bodyLarge!
-                        .copyWith(color: Theme.of(context).colorScheme.tertiary)),
-                    
-              ),
-            ),
-          )),
-          const Padding(padding: EdgeInsets.only(left: 8)),
-          const ChatPageImageIcon(path: 'assets/Audio.png',),
-          const Padding(padding: EdgeInsets.only(left: 8)),
-        ],
-      ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 20, top: 14, right: 20, bottom: 44),
+          child: Row(
+            children: [
+              const ChatPageImageIcon(path: 'assets/Attach.png',),
+              const Padding(padding: EdgeInsets.only(left: 8)),
+              Flexible(
+                  child: SecondaryContainer(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: TextField(
+                    textAlignVertical: TextAlignVertical.center,
+                    maxLines: 99,
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Сообщение",
+                        hintStyle: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .copyWith(color: Theme.of(context).colorScheme.tertiary)),
+                        
+                  ),
+                ),
+              )),
+              const Padding(padding: EdgeInsets.only(left: 8)),
+              const ChatPageImageIcon(path: 'assets/Audio.png',),
+              const Padding(padding: EdgeInsets.only(left: 8)),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
